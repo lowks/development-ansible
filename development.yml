@@ -1,0 +1,51 @@
+---
+- hosts: localhost
+  vars:
+     vundle_install_path: "/home/{{ ansible_user_id }}/.vim/bundle"
+     emacs_path: "/home/{{ ansible_user_id }}/.emacs.d"
+  tasks:
+    # Update cache
+    - name: Update apt cache
+      action: apt update_cache=yes
+      become_method: sudo
+      become: yes
+      become_user: root
+
+    # Install dependencies
+    - name: Install dependencies
+      apt: name={{ item }} state=latest
+      with_items:
+       - vim
+       - git
+       - git-crypt
+       - python-dev
+       - emacs24
+       - build-essential
+       - zsh
+       - virtualenv
+      become_method: sudo
+      become: yes
+      become_user: root
+
+    # Create editor directories
+    - name: Create vim directory
+      file: path=/.vim/bundle state=directory owner={{ ansible_user_id }} group={{ ansible_user_id }}
+
+    # Get Vundle
+    - name: Get vundle directories
+      git: repo=git@github.com:VundleVim/Vundle.vim.git
+           dest={{ vundle_install_path }}/Vundle.vim
+
+    # Get qemacs
+    - name: Get qemacs
+      git: repo=git@github.com:lowks/qemacs.git
+           dest=/tmp/qemacs
+
+    # Get prezto
+    - name: Get Prezto
+      git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
+           recursive=yes
+
+    # Copy over qemacs to Downloads
+    - name: Copy over qemacs
+      copy: src=/tmp/qemacs/.emacs.d dest=/home/{{ ansible_user_id }}/
