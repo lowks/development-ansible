@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  tasks:
+   - name: Install Nginx
+     become_method: sudo
+     become: yes
+     become_user: root
+     group: name=docker state=present 
+     tags: docker
+
+   - name: Add lowks to docker group
+     become_method: sudo
+     become: yes
+     become_user: root
+     user: name=lowks groups=lowks,adm,cdrom,sudo,dip,plugdev,lpadmin,sambashare,docker append=yes
+

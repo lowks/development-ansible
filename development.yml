@@ -44,8 +44,12 @@
     # Get prezto
     - name: Get Prezto
       git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
+           update=no
            recursive=yes
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
       copy: src=/tmp/qemacs/.emacs.d dest=/home/{{ ansible_user_id }}/
+
+    # Do docker tasks
+- include: docker.yml
