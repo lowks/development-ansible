@@ -4,16 +4,9 @@
      vundle_install_path: "/home/{{ ansible_user_id }}/.vim/bundle"
      emacs_path: "/home/{{ ansible_user_id }}/.emacs.d"
   tasks:
-    # Update cache
-    - name: Update apt cache
-      action: apt update_cache=yes
-      become_method: sudo
-      become: yes
-      become_user: root
-
     # Install dependencies
     - name: Install dependencies
-      apt: name={{ item }} state=latest
+      apt: name={{ item }} state=latest update_cache=yes
       with_items:
        - vim
        - git
@@ -23,6 +16,8 @@
        - build-essential
        - zsh
        - virtualenv
+       - terminator
+       - silversearcher-ag
       become_method: sudo
       become: yes
       become_user: root
@@ -35,17 +30,21 @@
     - name: Get vundle directories
       git: repo=git@github.com:VundleVim/Vundle.vim.git
            dest={{ vundle_install_path }}/Vundle.vim
+           key_file=/home/lowks/.ssh/id_rsa
 
     # Get qemacs
     - name: Get qemacs
       git: repo=git@github.com:lowks/qemacs.git
            dest=/tmp/qemacs
+           key_file=/home/lowks/.ssh/id_rsa
 
     # Get prezto
     - name: Get Prezto
-      git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
-           update=no
+    # git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
+      git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
            recursive=yes
+           update=no
+           key_file=/home/lowks/.ssh/id_rsa
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
