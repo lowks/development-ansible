@@ -4,6 +4,10 @@
      vundle_install_path: "/home/{{ ansible_user_id }}/.vim/bundle"
      emacs_path: "/home/{{ ansible_user_id }}/.emacs.d"
   tasks:
+    # Add apt repo for albert
+    - name: add ppa for albert
+      apt_repository: repo='ppa:nilarimogard/webupd8'
+      
     # Install dependencies
     - name: Install dependencies
       apt: name={{ item }} state=latest update_cache=yes
@@ -17,7 +21,7 @@
        - zsh
        - virtualenv
        - terminator
-       - silversearcher-ag
+       - albert
       become_method: sudo
       become: yes
       become_user: root
@@ -30,6 +34,7 @@
     - name: Get vundle directories
       git: repo=git@github.com:VundleVim/Vundle.vim.git
            dest={{ vundle_install_path }}/Vundle.vim
+           accept_hostkey=yes
            key_file=/home/lowks/.ssh/id_rsa
 
     # Get qemacs
