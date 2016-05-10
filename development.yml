@@ -56,4 +56,4 @@
       copy: src=/tmp/qemacs/.emacs.d dest=/home/{{ ansible_user_id }}/
 
     # Do docker tasks
-- include: docker.yml
+    - include: tasks/docker.yml
