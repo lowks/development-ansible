@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   vars:
-     vundle_install_path: "/home/{{ ansible_user_id }}/.vim/bundle"
-     emacs_path: "/home/{{ ansible_user_id }}/.emacs.d"
+     vundle_install_path: "/home/lowks/.vim/bundle"
+     emacs_path: "/home/lowks/.emacs.d"
   tasks:
     # Add apt repo for albert
     - name: add ppa for albert
@@ -29,7 +29,11 @@
 
     # Create editor directories
     - name: Create vim directory
-      file: path=/.vim/bundle state=directory owner={{ ansible_user_id }} group={{ ansible_user_id }}
+      file: path=/home/lowks/.vim/bundle state=directory owner=lowks group=lowks
+      
+    # Create project directories
+    - name: Create project directories
+      file: path=/home/lowks/Projects/ state=directory owner=lowks group=lowks
 
     # Get Vundle
     - name: Get vundle directories
