@@ -12,7 +12,7 @@
     - name: Install dependencies
       apt: name={{ item }} state=latest update_cache=yes
       with_items:
-       - vim
+       - vim-nox
        - git
        - git-crypt
        - python-dev
