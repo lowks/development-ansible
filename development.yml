@@ -23,6 +23,7 @@
        - terminator
        - albert
        - tasksel
+       - libpq-dev
       become_method: sudo
       become: yes
       become_user: root
