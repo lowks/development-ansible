@@ -22,6 +22,7 @@
        - virtualenv
        - terminator
        - albert
+       - tasksel
       become_method: sudo
       become: yes
       become_user: root
