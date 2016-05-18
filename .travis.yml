@@ -8,4 +8,5 @@ before_install:
 install:
   - pip install ansible>=1.8
 script:
-  - ansible-playbook -i localhost -vv development.yml
+  - ansible-playbook -i localhost -vv development.yml --check-syntax
+  - ansible-playbook -i localhost -vv development.yml --sudo
