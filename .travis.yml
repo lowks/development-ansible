@@ -7,7 +7,7 @@ python: "2.7"
  # - sudo apt-get install -qq python-apt
 install:
   pip install --upgrade pip
-  pip install ansible apt
+  pip install ansible python-apt
   # - deactivate
   # - sudo apt-get install software-properties-common
   # - sudo apt-add-repository -y ppa:ansible/ansible
