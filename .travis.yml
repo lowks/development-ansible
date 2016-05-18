@@ -7,7 +7,7 @@ before_install:
  - sudo apt-get install -qq python-apt
  - sudo pip install apt
 install:
-  - pip install ansible>=1.8
+  - pip install ansible
 script:
   - ansible-playbook -i localhost -vv development.yml --check-syntax
   - ansible-playbook -i localhost -vv development.yml --sudo
