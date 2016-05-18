@@ -2,11 +2,12 @@
 
 sudo: required
 
-dist: trusty
+dist: wily
 
 language: generic
 
 before_install:
+  - useradd lowks
   - sudo apt-get install -y software-properties-common
   - sudo apt-add-repository -y ppa:ansible/ansible
   - sudo apt-get update
