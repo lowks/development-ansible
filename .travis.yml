@@ -1,0 +1,27 @@
+---
+
+sudo: required
+
+dist: wily
+
+language: generic
+
+before_install:
+  - sudo useradd lowks
+  - sudo apt-get install -y software-properties-common
+  - sudo apt-add-repository -y ppa:ansible/ansible
+  # - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+  # - sudo rm -f /etc/dpkg/dpkg.cfg.d/multiarch
+  - sudo add-apt-repository 'deb http://us.archive.ubuntu.com/ubuntu/ wily main restricted universe multiverse'
+  - sudo add-apt-repository 'deb http://us.archive.ubuntu.com/ubuntu/ wily-updates main restricted universe multiverse'
+  - sudo apt-get update -qq
+  # - sudo apt-get install unattended-upgrades
+  # - sudo unattended-upgrades
+  - sudo apt-get -y install ansible
+ # - sudo apt-get install python-distutils-extra
+# install:
+  # - pip install --upgrade pip
+  # - pip install ansible
+script:
+  - "ansible-playbook -vv development.yml --syntax-check"
+  # - "ansible-playbook -vv development.yml --connection=local --sudo"
