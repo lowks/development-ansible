@@ -5,7 +5,7 @@ python: "2.7"
 before_install:
   - sudo apt-get update -qq
   - sudo useradd lowks
- # - sudo apt-get install -qq python-apt
+  - sudo apt-get install -qq python-apt
  # - sudo apt-get install python-distutils-extra
 install:
   # - pip install --upgrade pip
