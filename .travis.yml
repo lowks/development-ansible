@@ -24,4 +24,4 @@ before_install:
   # - pip install ansible
 script:
   - "ansible-playbook -vv development.yml --syntax-check"
-  - "ansible-playbook -vv development.yml --connection=local --sudo"
+  # - "ansible-playbook -vv development.yml --connection=local --sudo"
