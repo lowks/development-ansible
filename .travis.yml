@@ -14,7 +14,7 @@ before_install:
   # - sudo rm -f /etc/dpkg/dpkg.cfg.d/multiarch
   - sudo apt-get update
   - sudo apt-get install unattended-upgrades
-  - sudo unattended-upgrades -v
+  - sudo unattended-upgrades
   - sudo apt-get -y install ansible python-apt
  # - sudo apt-get install python-distutils-extra
 # install:
