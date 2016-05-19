@@ -18,7 +18,7 @@ before_install:
   - echo $PATH
   - conda update --yes conda
 install:
-   - apt-get install python-apt
+   - sudo apt-get install python-apt
    - conda install --yes python
    - pip install ansible
 script:
