@@ -18,7 +18,7 @@ before_install:
   - echo $PATH
   - conda update --yes conda
 install:
-   - conda install --yes python=$TRAVIS_PYTHON_VERSION
+   - conda install --yes python
    - pip install ansible
 script:
   - "ansible-playbook -vv development.yml --syntax-check"
