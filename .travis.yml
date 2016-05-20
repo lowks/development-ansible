@@ -22,7 +22,7 @@ install:
    - conda install --yes python
    - conda install --yes -c anaconda-cluster python-apt
    - conda install --yes -c bioconda ansible
-   # - pip install ansible
+   - ls -al
 script:
   - "ansible-playbook -vv development.yml --syntax-check"
   # - "ansible-playbook -vv development.yml --connection=local --sudo"
