@@ -22,7 +22,7 @@
        - zsh
        - python-virtualenv
        - terminator
-       - albert
+       # - albert
        - tasksel
        - libpq-dev
       become_method: sudo
