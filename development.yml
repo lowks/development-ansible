@@ -17,7 +17,7 @@
        - git
        # - git-crypt
        - python-dev
-       - emacs24
+       # - emacs24
        - build-essential
        - zsh
        - virtualenv
