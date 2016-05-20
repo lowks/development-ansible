@@ -25,7 +25,7 @@
        - zsh
        - python-virtualenv
        - terminator
-        - albert
+       - albert
        - tasksel
        - libpq-dev
        # - docker.io
