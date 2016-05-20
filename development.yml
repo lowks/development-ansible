@@ -20,7 +20,7 @@
        # - emacs24
        - build-essential
        - zsh
-       - virtualenv
+       - python-virtualenv
        - terminator
        - albert
        - tasksel
