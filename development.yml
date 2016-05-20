@@ -9,6 +9,9 @@
     - name: add ppa for albert
       apt_repository: repo='ppa:nilarimogard/webupd8'
       
+    - name: apt-get update
+      apt: update_cache=yes
+      
     # Install dependencies
     - name: Install dependencies
       apt: name={{ item }} state=latest update_cache=yes
@@ -22,7 +25,7 @@
        - zsh
        - python-virtualenv
        - terminator
-       # - albert
+        - albert
        - tasksel
        - libpq-dev
        # - docker.io
