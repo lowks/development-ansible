@@ -54,7 +54,9 @@
 
     # Get qemacs
     - name: Get qemacs
-      git: repo=git@github.com:lowks/qemacs.git
+      # git: repo=git@github.com:lowks/qemacs.git
+      git: repo=https://github.com/lowks/qemacs.git
+           accept_hostkey=yes
            dest=/tmp/qemacs
            # key_file=/home/lowks/.ssh/id_rsa
 
