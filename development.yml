@@ -28,6 +28,13 @@
       become_method: sudo
       become: yes
       become_user: root
+      
+    # Create .ssh directory
+    - name: Create ssh directory
+      file: path=/home/lowks/.ssh state=directory owner=lowks group=lowks
+      
+    # Create ssh key
+    - user: name=lowks generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
 
     # Create editor directories
     - name: Create vim directory
