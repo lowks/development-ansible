@@ -25,7 +25,7 @@ install:
    - ls -al ~/.ssh
    - cat ~/.bashrc
 before_script:
- - su - lowks
+ - sudo su - lowks
  - mkdir -p /home/lowks/.ssh
  # - sudo chown -R lowks /home/lowks/.ssh
  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> /home/lowks/.ssh/config
