@@ -15,19 +15,27 @@
       with_items:
        - vim-nox
        - git
-       - git-crypt
+       # - git-crypt
        - python-dev
-       - emacs24
+       # - emacs24
        - build-essential
        - zsh
-       - virtualenv
+       - python-virtualenv
        - terminator
-       - albert
+       # - albert
        - tasksel
        - libpq-dev
+       # - docker.io
       become_method: sudo
       become: yes
       become_user: root
+      
+    # Create .ssh directory
+    - name: Create ssh directory
+      file: path=/home/lowks/.ssh state=directory owner=lowks group=lowks
+      
+    # Create ssh key
+    - user: name=lowks generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=/home/lowks/.ssh/id_rsa
 
     # Create editor directories
     - name: Create vim directory
@@ -39,28 +47,32 @@
 
     # Get Vundle
     - name: Get vundle directories
-      git: repo=git@github.com:VundleVim/Vundle.vim.git
+      # git: repo=git@github.com:VundleVim/Vundle.vim.git
+      git: repo=https://github.com/VundleVim/Vundle.vim.git
            dest={{ vundle_install_path }}/Vundle.vim
            accept_hostkey=yes
-           key_file=/home/lowks/.ssh/id_rsa
+           # key_file=/home/lowks/.ssh/id_rsa
 
     # Get qemacs
     - name: Get qemacs
-      git: repo=git@github.com:lowks/qemacs.git
+      # git: repo=git@github.com:lowks/qemacs.git
+      git: repo=https://github.com/lowks/qemacs.git
+           accept_hostkey=yes
            dest=/tmp/qemacs
-           key_file=/home/lowks/.ssh/id_rsa
+           # key_file=/home/lowks/.ssh/id_rsa
 
     # Get prezto
     - name: Get Prezto
     # git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
-      git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
+    #  git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
+      git: repo=https://github.com/sorin-ionescu/prezto.git dest=/tmp/prezto
            recursive=yes
            update=no
-           key_file=/home/lowks/.ssh/id_rsa
+           # key_file=/home/lowks/.ssh/id_rsa
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
       copy: src=/tmp/qemacs/.emacs.d dest=/home/{{ ansible_user_id }}/
 
     # Do docker tasks
-    - include: tasks/docker.yml
+    #- include: tasks/docker.yml

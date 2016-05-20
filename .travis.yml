@@ -18,9 +18,12 @@ before_install:
   - echo $PATH
   - conda update --yes conda
 install:
-   - sudo apt-get install python-apt
+   # - sudo apt-get install python-apt
    - conda install --yes python
-   - pip install ansible
+   - conda install --yes -c anaconda-cluster python-apt
+   - conda install --yes -c bioconda ansible
+   - ls -al ~/.ssh
+   - cat ~/.bashrc
 script:
-  - "ansible-playbook -vv development.yml --syntax-check"
-  # - "ansible-playbook -vv development.yml --connection=local --sudo"
+  - "ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check"
+  - "ansible-playbook -vv -i hosts development.yml --connection=local --sudo"
