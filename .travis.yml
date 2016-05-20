@@ -25,5 +25,5 @@ install:
    - ls -al
    - cat ~/.bashrc
 script:
-  - "ansible-playbook -vv -i localhost development.yml --connection=local --syntax-check"
+  - "ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check"
   # - "ansible-playbook -vv development.yml --connection=local --sudo"
