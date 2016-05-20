@@ -63,7 +63,8 @@
     # Get prezto
     - name: Get Prezto
     # git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
-      git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
+    #  git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
+      git: repo=https://github.com/sorin-ionescu/prezto.git dest=/tmp/prezto
            recursive=yes
            update=no
            # key_file=/home/lowks/.ssh/id_rsa
