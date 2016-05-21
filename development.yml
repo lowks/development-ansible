@@ -19,9 +19,9 @@
       with_items:
        - vim-nox
        - git
-       # - git-crypt
+       - git-crypt
        - python-dev
-       # - emacs24
+       - emacs24
        - build-essential
        - zsh
        - python-virtualenv
