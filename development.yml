@@ -30,9 +30,9 @@
        - tasksel
        - libpq-dev
        # - docker.io
-      become_method: sudo
-      become: yes
-      become_user: root
+      # become_method: sudo
+      # become: yes
+      # become_user: root
       
     # Create .ssh directory
     - name: Create ssh directory
