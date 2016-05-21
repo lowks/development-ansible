@@ -6,7 +6,7 @@ build:
   steps:
     - script:
         name: Add user and install dependencies 
-        code: |
+        code: |-
             useradd lowks
             conda update --yes conda
             conda install --yes python 
@@ -14,6 +14,6 @@ build:
             conda install --yes -c bioconda ansible
 
         name: Test ansible
-        code: |
+        code: |-
            ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check
            ansible-playbook -vv -i hosts development.yml --connection=local --sudo
