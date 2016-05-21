@@ -10,7 +10,9 @@ build:
             useradd lowks
             conda update --yes conda
             conda install --yes python 
-            
+            conda install --yes -c anaconda-cluster python-apt
+            conda install --yes -c bioconda ansible
+
         name: Test ansible
         code: |
            ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check
