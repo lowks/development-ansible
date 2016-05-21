@@ -29,7 +29,7 @@
        - albert
        - tasksel
        - libpq-dev
-       # - docker.io
+       - docker.io
       # become_method: sudo
       # become: yes
       # become_user: root
@@ -79,4 +79,4 @@
       copy: src=/tmp/qemacs/.emacs.d dest=/home/{{ ansible_user_id }}/
 
     # Do docker tasks
-    #- include: tasks/docker.yml
+    - include: tasks/docker.yml
