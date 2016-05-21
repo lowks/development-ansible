@@ -1,0 +1,18 @@
+box: somada141/python-miniconda
+#services:
+#   - wercker/doesNotExist
+#
+build:
+  steps:
+    - script:
+        name: Add user and install dependencies 
+        code: |
+            useradd lowks
+            conda update --yes conda
+            conda install --yes python 
+            
+        name: Test ansible
+        code: |
+            
+            ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check
+           ansible-playbook -vv -i hosts development.yml --connection=local --sudo
