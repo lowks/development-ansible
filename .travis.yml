@@ -29,10 +29,10 @@ install:
    - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
    - sudo docker exec ubuntu-16.04 useradd lowks
    - sudo docker exec ubuntu-16.04 bash -c "export PATH=/root/miniconda2/bin:$PATH"
-   - sudo docker exec ubuntu-16.04 conda update --yes conda
-   - sudo docker exec ubuntu-16.04 conda install --yes python
-   - sudo docker exec ubuntu-16.04 conda install --yes -c anaconda-cluster python-apt
-   - sudo docker exec ubuntu-16.04 conda install --yes -c bioconda ansible
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda update --yes conda
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda install --yes python
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda install --yes -c anaconda-cluster python-apt
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda install --yes -c bioconda ansible
    # - sudo apt-get install python-apt
    # - conda install --yes python
    # - conda install --yes -c anaconda-cluster python-apt
@@ -43,7 +43,7 @@ install:
    # - sudo apt-get update
    # - sudo apt-get install -y albert
 script:
-  - sudo docker exec ubuntu-16.04 ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check"
-  - sudo docker exec ubuntu-16.04 ansible-playbook ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --sudo"
+  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check"
+  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --sudo"
   # - "ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check"
   # - "ansible-playbook -vv -i hosts development.yml --connection=local --sudo"
