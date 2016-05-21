@@ -10,7 +10,7 @@ services: docker
 
 python: 2.7
 
-before_install:
+# before_install:
   # - sudo useradd lowks
   # - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
   # - chmod +x miniconda.sh
@@ -34,6 +34,7 @@ install:
    - sudo docker exec ubuntu-16.04 apt-get install -y wget bzip2 python
    - sudo docker exec ubuntu-16.04 wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O /root/miniconda.sh
    - sudo docker exec ubuntu-16.04 chmod +x /root/miniconda.sh 
+   - sudo docker exec ubuntu-16.04 rm -rf /root/miniconda2 
    - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
    - sudo docker exec ubuntu-16.04 useradd lowks
    - sudo docker exec ubuntu-16.04 bash -c "export PATH=/root/miniconda2/bin:$PATH"
