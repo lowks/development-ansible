@@ -13,6 +13,5 @@ build:
             
         name: Test ansible
         code: |
-            
            ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check
            ansible-playbook -vv -i hosts development.yml --connection=local --sudo
