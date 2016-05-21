@@ -28,7 +28,7 @@ install:
    - sudo docker exec ubuntu-16.04 chmod +x /root/miniconda.sh 
    - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
    - sudo docker exec ubuntu-16.04 useradd lowks
-   - sudo docker exec ubuntu-16.04 export PATH=/root/miniconda2/bin:$PATH
+   - sudo docker exec ubuntu-16.04 bash -c "export PATH=/root/miniconda2/bin:$PATH"
    - sudo docker exec ubuntu-16.04 conda update --yes conda
    - sudo docker exec ubuntu-16.04 conda install --yes python
    - sudo docker exec ubuntu-16.04 conda install --yes -c anaconda-cluster python-apt
