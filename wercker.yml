@@ -1,9 +1,7 @@
 box: jakirkham/ubuntu_conda
-#services:
-#   - wercker/doesNotExist
-#
 build:
   steps:
+
     - script:
         name: Add user and install dependencies 
         code: |-
@@ -13,6 +11,7 @@ build:
             conda install --yes -c anaconda-cluster python-apt
             conda install --yes -c bioconda ansible
 
+    - script:
         name: Test ansible
         code: |-
            ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check
