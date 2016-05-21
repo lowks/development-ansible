@@ -43,7 +43,7 @@ install:
    # - sudo apt-get update
    # - sudo apt-get install -y albert
 script:
-  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check"
-  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --sudo"
+  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check
+  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --sudo
   # - "ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check"
   # - "ansible-playbook -vv -i hosts development.yml --connection=local --sudo"
