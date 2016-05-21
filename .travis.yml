@@ -2,28 +2,56 @@
 
 sudo: required
 
-dist: xenial
+# dist: xenial
 
-language: generic
+language: python
+
+services: docker
 
 python: 2.7
 
-before_install:
-  - sudo useradd lowks
-  - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
-  - chmod +x miniconda.sh
-  - ./miniconda.sh -b
-  - ls -al /home/travis/miniconda2/bin/
-  - export PATH=/home/travis/miniconda2/bin:$PATH
-  - echo $PATH
-  - conda update --yes conda
+# before_install:
+  # - sudo useradd lowks
+  # - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+  # - chmod +x miniconda.sh
+  # - ./miniconda.sh -b
+  # - ls -al /home/travis/miniconda2/bin/
+  # - export PATH=/home/travis/miniconda2/bin:$PATH
+  # - echo $PATH
+  # - conda update --yes conda
 install:
+   - sudo docker pull ubuntu:16.04
+   - sudo docker run --detach --volume="${PWD}":/root/development-ansible --name ubuntu-16.04 ubuntu:16.04 sleep 300
+   - sudo docker exec ubuntu-16.04 apt-get update
+   - sudo docker exec ubuntu-16.04 apt-get install -y wget bzip2 python python-software-properties software-properties-common
+   - sudo docker exec ubuntu-16.04 add-apt-repository universe 
+   - sudo docker exec ubuntu-16.04 apt-get update
+   - sudo docker exec ubuntu-16.04 wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O /root/miniconda.sh
+   - sudo docker exec ubuntu-16.04 chmod +x /root/miniconda.sh 
+   - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
+   - sudo docker exec ubuntu-16.04 bash -c "id -u lowks &> /dev/null || useradd lowks"
+   - sudo docker exec ubuntu-16.04 apt-get update
+   - sudo docker exec ubuntu-16.04 apt-get install -y wget bzip2 python
+   - sudo docker exec ubuntu-16.04 wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O /root/miniconda.sh
+   - sudo docker exec ubuntu-16.04 chmod +x /root/miniconda.sh 
+   - sudo docker exec ubuntu-16.04 rm -rf /root/miniconda2 
+   - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
+   - sudo docker exec ubuntu-16.04 bash -c "export PATH=/root/miniconda2/bin:$PATH"
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda update --yes conda
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda install --yes python
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda install --yes -c anaconda-cluster python-apt
+   - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/conda install --yes -c bioconda ansible
    # - sudo apt-get install python-apt
-   - conda install --yes python
-   - conda install --yes -c anaconda-cluster python-apt
-   - conda install --yes -c bioconda ansible
-   - ls -al ~/.ssh
-   - cat ~/.bashrc
+   # - conda install --yes python
+   # - conda install --yes -c anaconda-cluster python-apt
+   # - conda install --yes -c bioconda ansible
+   # - ls -al ~/.ssh
+   # - cat ~/.bashrc
+   # - sudo FORCE_ADD_APT_REPOSITORY=1 add-apt-repository ppa:nilarimogard/webupd8
+   # - sudo apt-get update
+   # - sudo apt-get install -y albert
 script:
-  - "ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check"
-  - "ansible-playbook -vv -i hosts development.yml --connection=local --sudo"
+  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check
+  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local
+  # - "ansible-playbook -vv -i hosts development.yml --connection=local --syntax-check"
+  # - "ansible-playbook -vv -i hosts development.yml --connection=local --sudo"
