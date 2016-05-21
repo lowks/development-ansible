@@ -1,4 +1,4 @@
-box: somada141/python-miniconda
+box: jakirkham/ubuntu_conda
 #services:
 #   - wercker/doesNotExist
 #
