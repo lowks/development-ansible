@@ -30,7 +30,7 @@
        - tasksel
        - libpq-dev
        - docker.io
-       - silversearcher
+       - silversearcher-ag
       # become_method: sudo
       # become: yes
       # become_user: root
