@@ -31,6 +31,7 @@
        - libpq-dev
        - docker.io
        - silversearcher-ag
+       - terminology
       # become_method: sudo
       # become: yes
       # become_user: root
