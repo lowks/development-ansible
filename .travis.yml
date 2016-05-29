@@ -9,8 +9,8 @@ services: docker
 python: 2.7
 
 install:
-   - sudo docker pull ubuntu:16.04
-   - sudo docker run --detach --volume="${PWD}":/root/development-ansible --name ubuntu-16.04 ubuntu:16.04 sleep 300
+   - sudo docker pull lowks/ubuntu-miniconda 
+   - sudo docker run --detach --volume="${PWD}":/root/development-ansible --name ubuntu-16.04 lowks/ubuntu-miniconda sleep 300
    - sudo docker exec ubuntu-16.04 apt-get update
    - sudo docker exec ubuntu-16.04 apt-get install -y wget bzip2 python python-software-properties software-properties-common
    - sudo docker exec ubuntu-16.04 add-apt-repository universe 
