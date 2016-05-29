@@ -11,18 +11,18 @@ python: 2.7
 install:
    - sudo docker pull lowks/ubuntu-miniconda 
    - sudo docker run --detach --volume="${PWD}":/root/development-ansible --name ubuntu-16.04 lowks/ubuntu-miniconda sleep 300
-   - sudo docker exec ubuntu-16.04 apt-get update
-   - sudo docker exec ubuntu-16.04 apt-get install -y wget bzip2 python python-software-properties software-properties-common
-   - sudo docker exec ubuntu-16.04 add-apt-repository universe 
-   - sudo docker exec ubuntu-16.04 apt-get update
-   - sudo docker exec ubuntu-16.04 wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O /root/miniconda.sh
-   - sudo docker exec ubuntu-16.04 chmod +x /root/miniconda.sh 
-   - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
+     # - sudo docker exec ubuntu-16.04 apt-get update
+     # - sudo docker exec ubuntu-16.04 apt-get install -y wget bzip2 python python-software-properties software-properties-common
+     # - sudo docker exec ubuntu-16.04 add-apt-repository universe 
+     # - sudo docker exec ubuntu-16.04 apt-get update
+     # - sudo docker exec ubuntu-16.04 wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O /root/miniconda.sh
+     # - sudo docker exec ubuntu-16.04 chmod +x /root/miniconda.sh 
+     # - sudo docker exec ubuntu-16.04 ./root/miniconda.sh -b
    - sudo docker exec ubuntu-16.04 bash -c "id -u lowks &> /dev/null || useradd lowks"
-   - sudo docker exec ubuntu-16.04 bash -c "export PATH=/root/miniconda2/bin:$PATH && conda update --yes conda && conda install --yes python"
-   - sudo docker exec ubuntu-16.04 bash -c "export PATH=/root/miniconda2/bin:$PATH && conda install --yes -c anaconda-cluster python-apt  && conda install -c kbroughton ansible"
+   - sudo docker exec ubuntu-16.04 bash -c "export PATH=/opt/conda/bin:$PATH && conda update --yes conda && conda install --yes python"
+   - sudo docker exec ubuntu-16.04 bash -c "export PATH=/opt/conda/bin:$PATH && conda install --yes -c anaconda-cluster python-apt  && conda install -c kbroughton ansible"
 
 script:
-  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check
-  - sudo docker exec ubuntu-16.04 /root/miniconda2/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local
-  - sudo docker exec ubuntu-16.04 bash -c "/root/miniconda2/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test-pass' && exit 0) || (echo 'Idempotence test-fail' && exit 1)"
+  - sudo docker exec ubuntu-16.04 /opt/conda/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check
+  - sudo docker exec ubuntu-16.04 /opt/conda/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local
+  - sudo docker exec ubuntu-16.04 bash -c "/opt/conda/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test-pass' && exit 0) || (echo 'Idempotence test-fail' && exit 1)"
