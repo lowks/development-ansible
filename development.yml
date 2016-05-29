@@ -82,3 +82,6 @@
 
     # Do docker tasks
     - include: tasks/docker.yml
+
+    # Do docker tasks
+    - include: tasks/install_conda.yml
