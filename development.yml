@@ -88,7 +88,7 @@
 
     # Create bashrc and bash_profile
     - name: Create bashrc and bash_profile
-      file: path=/home/lowks/{{ item }} owner=lowks group=lowks state=file
+      file: path=/home/lowks/{{ item }} owner=lowks group=lowks state=touch
       with_items:
         - .bashrc
         - .bash_profile
