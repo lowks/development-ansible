@@ -48,7 +48,7 @@ end
 
 describe "Files should contain strings" do
     describe file("/home/lowks/.zshrc") do
-        it { should contain "miniconda2" }
+        it { should contain "export PATH=$HOME/miniconda/bin/:$PATH" }
     end
 
 end
