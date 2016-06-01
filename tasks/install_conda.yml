@@ -29,6 +29,7 @@
               regexp="miniconda"
               line="export PATH=$HOME/miniconda/bin/:$PATH"
               insertafter=EOF
+              create=yes
   with_items:
     - .bashrc
     - .bash_profile
