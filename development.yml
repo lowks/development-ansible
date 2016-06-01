@@ -5,10 +5,13 @@
      vundle_install_path: "/home/lowks/.vim/bundle"
      emacs_path: "/home/lowks/.emacs.d"
   tasks:
-    # Add apt repo for albert
-    - name: add ppa for albert
-      apt_repository: repo='ppa:nilarimogard/webupd8'
+    # Add ppa apt repo
+    - name: add ppas
+      apt_repository: repo={{ item }}
                       update_cache=yes
+      with_items:
+        - ppa:nilarimogard/webupd8
+        - ppa:aacebedo/fasd
       
     - name: apt-get update
       apt: update_cache=yes cache_valid_time=0
@@ -32,6 +35,7 @@
        - docker.io
        - silversearcher-ag
        - terminology
+       - fasd
       # become_method: sudo
       # become: yes
       # become_user: root
