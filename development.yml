@@ -96,7 +96,7 @@
       with_items:
         - .bashrc
         - .bash_profile
-      when: p.stat.exists is defined p.stat.exists
+      when: p.stat.exists == false
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
