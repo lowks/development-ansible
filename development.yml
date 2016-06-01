@@ -77,10 +77,14 @@
     - name: Get Prezto
     # git: repo=git@github.com:sorin-ionescu/prezto.git dest=/home/{{ ansible_user_id }}/.zprezto
     #  git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
-      git: repo=https://github.com/sorin-ionescu/prezto.git dest=/tmp/prezto
+      git: repo=https://github.com/sorin-ionescu/prezto.git dest=/home/lowks/.zprezto
            recursive=yes
            update=no
            # key_file=/home/lowks/.ssh/id_rsa
+
+    # Link to the .zprezto zshrc
+    - name: Link to .zprezto zshrc
+      file: src=/home/lowks/.zprezto/runcoms/zshrc dest=/home/lowks/.zshrc state=link
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
