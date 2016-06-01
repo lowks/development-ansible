@@ -86,6 +86,13 @@
     - name: Link to .zprezto zshrc
       file: src=/home/lowks/.zprezto/runcoms/zshrc dest=/home/lowks/.zshrc state=link
 
+    # Create bashrc and bash_profile
+    - name: Create bashrc and bash_profile
+      file: path=/home/lowks/{{ item }} owner=lowks group=lowks
+      with_items:
+        - .bashrc
+        - .bash_profile
+
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
       copy: src=/tmp/qemacs/.emacs.d dest=/home/{{ ansible_user_id }}/
