@@ -2,10 +2,14 @@ require 'serverspec'
 
 set :backend, :exec 
 
-describe package('zsh') do
-    it { should be_installed }
-end
+packages = ["zsh", "git", "albert", "fasd"] 
 
-describe package('cock') do
-    it { should be_installed }
+describe "Make sure base packages installed" do
+	
+	packages.each do |base|
+	   describe package(base) do
+	      it { should be_installed }
+	   end
+	end
+
 end
