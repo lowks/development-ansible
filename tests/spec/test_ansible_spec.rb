@@ -13,3 +13,10 @@ describe "Make sure base packages installed" do
 	end
 
 end
+
+describe "path should exist" do
+	describe path("/opt/miniconda2/bin/conda") do
+	    it { should exist }
+	    it { should be_executable }
+	end
+end
