@@ -19,4 +19,19 @@ describe "path should exist" do
 	    it { should exist }
 	    it { should be_executable }
 	end
+
+	describe file("/home/lowks/Projects") do
+	    it { should exist }
+	    it { should be_owned by "lowks" }
+	end
+
 end
+
+describe "Group that should exist" do
+	describe group('docker') do
+	    it { should exist }
+	end
+end
+
+
+
