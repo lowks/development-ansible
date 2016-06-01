@@ -61,6 +61,8 @@
       git: repo=https://github.com/VundleVim/Vundle.vim.git
            dest={{ vundle_install_path }}/Vundle.vim
            accept_hostkey=yes
+           become=yes
+           become_user=lowks
            # key_file=/home/lowks/.ssh/id_rsa
 
     # Get qemacs
