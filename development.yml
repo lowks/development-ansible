@@ -87,11 +87,16 @@
       file: src=/home/lowks/.zprezto/runcoms/zshrc dest=/home/lowks/.zshrc state=link
 
     # Create bashrc and bash_profile
+    - name: Stat bashrc and bash_profile
+      stat: path=/home/lowks/.bash_profile
+      register: p
+
     - name: Create bashrc and bash_profile
       file: path=/home/lowks/{{ item }} owner=lowks group=lowks state=touch
       with_items:
         - .bashrc
         - .bash_profile
+      when: p.stat.exists is defined p.stat.exists
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
