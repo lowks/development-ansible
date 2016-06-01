@@ -45,3 +45,10 @@ end
 describe ppa('ppa:aacebedo/fasd') do
 	it { should be_enabled }
 end
+
+describe "Files should contain strings" do
+    describe file("/home/lowks/.zshrc") do
+        it { should contain "miniconda2" }
+    end
+
+end
