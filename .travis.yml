@@ -8,13 +8,11 @@ services: docker
 
 python: 2.7
 
-before_install:
-   - gem install serverspec
-
 install:
    - sudo docker pull lowks/ubuntu-miniconda 
    - sudo docker run --detach --volume="${PWD}":/root/development-ansible --name ubuntu-16.04 lowks/ubuntu-miniconda sleep 300
    - sudo docker exec ubuntu-16.04 bash -c "id -u lowks &> /dev/null || useradd lowks"
+   - sudo docker exec ubuntu-16.04 bash -c "gem install serverspec"
    - sudo docker exec ubuntu-16.04 bash -c "export PATH=/opt/conda/bin:$PATH && conda update --yes conda && conda install --yes python"
    - sudo docker exec ubuntu-16.04 bash -c "export PATH=/opt/conda/bin:$PATH && conda install --yes -c anaconda-cluster python-apt  && conda install -c kbroughton ansible"
 
@@ -22,4 +20,4 @@ script:
   - sudo docker exec ubuntu-16.04 /opt/conda/bin/ansible-playbook -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local --syntax-check
   - sudo docker exec ubuntu-16.04 /opt/conda/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local
   - sudo docker exec ubuntu-16.04 bash -c "/opt/conda/bin/ansible-playbook  -vv -i /root/development-ansible/hosts /root/development-ansible/development.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test-pass' && exit 0) || (echo 'Idempotence test-fail' && exit 1)"
-  - rspec tests/spec/test_ansible_spec.rb
+  - sudo docker exec ubuntu-16.04 bash -c "rspec /root/development-ansible/tests/spec/test_ansible_spec.rb"
