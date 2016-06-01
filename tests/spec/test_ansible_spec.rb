@@ -22,7 +22,12 @@ describe "path should exist" do
 
 	describe file("/home/lowks/Projects") do
 	    it { should exist }
-	    it { should be_owned by "lowks" }
+	    it { should be_owned_by "lowks" }
+	end
+
+	describe file("/home/lowks/.vim/bundle/Vundle.vim") do
+	    it { should exist }
+	    it { should be_owned_by "lowks" }
 	end
 
 end
@@ -32,6 +37,4 @@ describe "Group that should exist" do
 	    it { should exist }
 	end
 end
-
-
 
