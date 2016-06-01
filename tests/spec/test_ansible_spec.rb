@@ -38,3 +38,10 @@ describe "Group that should exist" do
 	end
 end
 
+describe ppa('ppa:nilarimogard/webupd8') do
+	it { should be_enabled }
+end
+
+describe ppa('ppa:aacebedo/fasd') do
+	it { should be_enabled }
+end
