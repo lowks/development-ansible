@@ -12,7 +12,7 @@ install:
    - sudo docker pull lowks/ubuntu-miniconda 
    - sudo docker run --detach --volume="${PWD}":/root/development-ansible --name ubuntu-16.04 lowks/ubuntu-miniconda sleep 300
    - sudo docker exec ubuntu-16.04 bash -c "id -u lowks &> /dev/null || useradd lowks"
-   - sudo docker exec ubuntu-16.04 bash -c "gem install serverspec"
+   - sudo docker exec ubuntu-16.04 bash -c "apt-get install rubygems && gem install serverspec"
    - sudo docker exec ubuntu-16.04 bash -c "export PATH=/opt/conda/bin:$PATH && conda update --yes conda && conda install --yes python"
    - sudo docker exec ubuntu-16.04 bash -c "export PATH=/opt/conda/bin:$PATH && conda install --yes -c anaconda-cluster python-apt  && conda install -c kbroughton ansible"
 
