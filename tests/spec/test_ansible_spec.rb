@@ -29,6 +29,12 @@ describe "path should exist" do
 	    it { should exist }
 	    it { should be_owned_by "lowks" }
 	end
+    
+	describe file("/home/lowks/.zprezto/.zshrc") do
+	    it { should exist }
+	    it { should be_symlink }
+	    it { should be_linked_to '/home/lowks/.zprezto/runcoms/zshrc' }
+	end
 
 end
 
