@@ -29,6 +29,12 @@ describe "path should exist" do
 	    it { should exist }
 	    it { should be_owned_by "lowks" }
 	end
+    
+	describe file("/home/lowks/.zshrc") do
+	    it { should exist }
+	    it { should be_symlink }
+	    it { should be_linked_to '/home/lowks/.zprezto/runcoms/zshrc' }
+	end
 
 	describe file("/home/lowks/.emacs.d") do
 	    it { should exist }
@@ -49,4 +55,11 @@ end
 
 describe ppa('ppa:aacebedo/fasd') do
 	it { should be_enabled }
+end
+
+describe "Files should contain strings" do
+    describe file("/home/lowks/.zshrc") do
+        it { should contain "export PATH=$HOME/miniconda/bin/:$PATH" }
+    end
+
 end
