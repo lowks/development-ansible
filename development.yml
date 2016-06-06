@@ -12,10 +12,10 @@
       with_items:
         - ppa:nilarimogard/webupd8
         - ppa:aacebedo/fasd
-      
+
     - name: apt-get update
       apt: update_cache=yes cache_valid_time=0
-      
+
     # Install dependencies
     - name: Install dependencies
       apt: name={{ item }} state=latest update_cache=yes
@@ -39,18 +39,18 @@
       # become_method: sudo
       # become: yes
       # become_user: root
-      
+
     # Create .ssh directory
     - name: Create ssh directory
       file: path=/home/lowks/.ssh state=directory owner=lowks group=lowks
-      
+
     # Create ssh key
     - user: name=lowks generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=/home/lowks/.ssh/id_rsa
 
     # Create editor directories
     - name: Create vim directory
       file: path=/home/lowks/.vim/bundle state=directory owner=lowks group=lowks
-      
+
     # Create project directories
     - name: Create project directories
       file: path=/home/lowks/Projects/ state=directory owner=lowks group=lowks
@@ -60,6 +60,7 @@
       # git: repo=git@github.com:VundleVim/Vundle.vim.git
       git: repo=https://github.com/VundleVim/Vundle.vim.git
            dest={{ vundle_install_path }}/Vundle.vim
+           version=master
            accept_hostkey=yes
       become: yes
       become_user: lowks
@@ -70,6 +71,7 @@
       # git: repo=git@github.com:lowks/qemacs.git
       git: repo=https://github.com/lowks/qemacs.git
            accept_hostkey=yes
+           version=master
            dest=/tmp/qemacs
            # key_file=/home/lowks/.ssh/id_rsa
 
@@ -79,6 +81,7 @@
     #  git: repo=git@github.com:sorin-ionescu/prezto.git dest=/tmp/prezto
       git: repo=https://github.com/sorin-ionescu/prezto.git dest=/home/lowks/.zprezto
            recursive=yes
+           version=master
            update=no
            # key_file=/home/lowks/.ssh/id_rsa
 
