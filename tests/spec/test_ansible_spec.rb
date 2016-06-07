@@ -36,6 +36,11 @@ describe "path should exist" do
 	    it { should be_linked_to '/home/lowks/.zprezto/runcoms/zshrc' }
 	end
 
+	describe file("/home/lowks/.emacs.d") do
+	    it { should exist }
+	    it { should be_owned_by "lowks" }
+	end
+
 end
 
 describe "Group that should exist" do
