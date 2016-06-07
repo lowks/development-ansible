@@ -91,7 +91,7 @@
 
     # Copy over qemacs to Downloads
     - name: Copy over qemacs
-      copy: src=/tmp/qemacs/.emacs.d dest=/home/lowks/.emacs.d/
+      copy: src=/tmp/qemacs/.emacs.d dest=/home/lowks/.emacs.d/ owner=lowks group=lowks
 
     # Do docker tasks
     - include: tasks/docker.yml
