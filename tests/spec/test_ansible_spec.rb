@@ -40,6 +40,11 @@ describe "path should exist" do
 	    it { should exist }
 	    it { should be_owned_by "lowks" }
 	end
+	
+	describe file("/home/lowks/.zprezto") do
+	    it { should exist }
+	    it { should be_owned_by "lowks" }
+	end
 
 end
 
